@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Blog</title>
+	<title>Blog - Home</title>
 </head>
 <nav class="menu">
 	<ol>
