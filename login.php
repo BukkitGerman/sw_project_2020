@@ -21,7 +21,14 @@
 	</form>
 </div>
 <footer>
-	<a href="register.php">Register</a>
+	<div>
+		Author: Justin Preuß
+		Copyright © 2020 Justin Preuß
+		<a href="impressum.php">Impressum</a>
+	</div>
+	<div>
+		<a href="register.php">Register</a>
+	</div>
 </footer>
 </body>
 </html> 

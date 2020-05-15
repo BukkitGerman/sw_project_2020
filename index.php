@@ -14,6 +14,7 @@
 <body>
 <div>
 	<div class="post">
+		<h1>Neuster Blog Post</h1>
 		<!-- 
 		Newest Blog Post
 		Neusten Post aus Datenbank auslesen und Anzeigen.
