@@ -12,7 +12,14 @@
     </ol>
 </nav>
 <body>
-
+	<div class="daten">
+		<!--
+			Hier die Nutzer Daten anzeigen.
+		-->
+	</div>
+	<!--
+		Wenn Profile id und der Eingelogte nutzer übereinstimmen, Felder zum ändern der Daten hinzufügen!
+	-->
 </body>
 <footer>
 	Author: Justin Preuß
