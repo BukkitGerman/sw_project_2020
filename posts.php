@@ -21,8 +21,8 @@
 </div>
 </body>
 <footer>
-	Author: Justin Preuß
-	Copyright © 2020 Justin Preuß
+	Author: Justin Preuß<br>
+	Copyright © 2020 Justin Preuß<br>
 	<a href="impressum.php">Impressum</a>
 </footer>
 </html>

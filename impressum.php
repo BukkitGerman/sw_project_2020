@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Blog - Impressum</title>
 </head>
 <nav class="menu">
 	<ol>
