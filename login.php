@@ -24,4 +24,4 @@
 	<a href="register.php">Register</a>
 </footer>
 </body>
-</html>
+</html> 
