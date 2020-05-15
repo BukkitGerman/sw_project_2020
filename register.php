@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Blog - Login</title>
+	<title>Blog - Register</title>
 </head>
 <nav class="menu">
 	<ol>
@@ -14,14 +14,13 @@
 <body>
 <div>
 	<form method="POST">
-		<h3>Login</h3>
+		<h3>Register</h3>
 		<label>Username: <input type="text" name="username"></label><br>
+		<label>E-Mail: <input type="email" name="email"></label><br>
 		<label>Password: <input type="password" name="password"></label><br>
+		<label>Password: <input type="password" name="password2"></label><br>
 		<input type="submit" name="Submit" value="Submit">
 	</form>
 </div>
-<footer>
-	<a href="register.php">Register</a>
-</footer>
 </body>
 </html>
