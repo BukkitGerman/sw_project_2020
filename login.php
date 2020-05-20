@@ -40,14 +40,6 @@ if(isset($_GET['login'])){
     </ol>
 </nav>
 <body>
- 
-<?php 
-if(isset($errorMessage)) {
-    echo $errorMessage;
-}
-?>
- 
-
  <h1>Login</h1><br>
 <form action="?login=1" method="post">
 E-Mail:
@@ -58,6 +50,11 @@ Dein Passwort:
  
 <input type="submit" value="Login">
 </form> 
+<?php 
+if(isset($errorMessage)) {
+    echo $errorMessage;
+}
+?>
 </body>
 <footer>
 	<div>

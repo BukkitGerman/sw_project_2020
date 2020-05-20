@@ -1,71 +1,13 @@
-<!DOCTYPE html>
-<html>
-<?php 
+<?php
+session_start();
+
 $db = new SQLite3("data.db");
 
-if( isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["password2"])){
-
-	$usr = $_POST["username"];
-	$pwd = $_POST["password"];
-
-	$db-> exec("CREATE TABLE IF NOT EXISTS login(
-		id INTEGER PRIMARY KEY AUTOINCREMENT, 
-		db_username TEXT NOT NULL DEFAULT '0',
-		db_password TEXT NOT NULL DEFAULT '0',
-		db_permission INTEGER NOT NULL DEFAULT '0')");
-
-	$result = $db->query("SELECT * FROM login WHERE db_username = '$usr'");
-
-	$result_usr = $result->fetchArray();
-
-	if($usr != $result_usr['db_username']){
-
-		if($_POST['password'] === $_POST['password2']){
-			$db->exec("INSERT INTO login (
-				db_username, 
-				db_password,
-				db_permission) VALUES (
-				'$usr',
-				'$pwd',
-				0)");
-			$info = "Registration Successful!";
-			$form = "";
-		}else{
-			$info = "Passwords are not equal!";
-			$form = '<form method="POST">
-			<h3>Register</h3>
-			<label>Username: <input type="text" name="username"></label><br>
-			<!--<label>E-Mail: <input type="email" name="email"></label><br>-->
-			<label>Password: <input type="password" name="password"></label><br>
-			<label>Password: <input type="password" name="password2"></label><br>
-			<input type="submit" name="Submit" value="Submit">
-			</form>';
-		}
-
-	} else {
-		$info = "Username already exist!";
-		$form = '<form method="POST">
-			<h3>Register</h3>
-			<label>Username: <input type="text" name="username"></label><br>
-			<!--<label>E-Mail: <input type="email" name="email"></label><br>-->
-			<label>Password: <input type="password" name="password"></label><br>
-			<label>Password: <input type="password" name="password2"></label><br>
-			<input type="submit" name="Submit" value="Submit">
-			</form>';
-	}		
-}else{
-	$form = '<form method="POST">
-			<h3>Register</h3>
-			<label>Username: <input type="text" name="username"></label><br>
-			<!--<label>E-Mail: <input type="email" name="email"></label><br>-->
-			<label>Password: <input type="password" name="password"></label><br>
-			<label>Password: <input type="password" name="password2"></label><br>
-			<input type="submit" name="Submit" value="Submit">
-			</form>';
-}
 ?>
+<!DOCTYPE html>
+<html>
 <head>
-	<title>Blog - Register</title>
+	<title>Blog - Registrierung</title>
 </head>
 <nav class="menu">
 	<ol>
@@ -76,12 +18,83 @@ if( isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["pass
 	</ol>
 </nav>
 <body>
-	<div>
-		<?php 
-		echo $form;
-		echo $info; 
-		?>
-	</div>
+<?php
+
+$Showform = true;
+
+if(isset($_GET['register'])){
+	if(isset($_POST["email"]) && isset($_POST["passwort"]) && isset($_POST["passwort2"])){
+		$e = false;
+		$email = $_POST['email'];
+		$passwort = $_POST['passwort'];
+		$passwort2 = $_POST['passwort2'];
+	
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+			echo "E-Mail nicht gültig, bitte geben sie eine G&uuml;ltige E-Mail ein!<br>";
+			$e = true;
+		}
+		if(strlen($passwort) == 0){
+			echo "Bitte geben sie ein Passwort ein!";
+			$e = true;
+		}
+		if($passwort != $passwort2){
+			echo "Passw&ouml;rter stimmen nicht überein!";
+			$e = true;
+		}
+
+
+		if(!$e){
+			$result = $db->query("SELECT * FROM users WHERE email = '$email'");
+			$user = $result->fetchArray();
+
+			var_dump($user);
+
+			if($user != false){
+				echo "E-Mail Adresse ist vergeben!";
+				$e = true;
+			}
+		}
+
+		if(!$e){
+			$pw_hash = password_hash($passwort, PASSWORD_DEFAULT);
+
+			$smt = $db->prepare("INSERT INTO users (email, passwort) VALUES (:email, :passwort)");
+			$smt->bindValue(':email', $email, SQLITE3_TEXT);
+			$smt->bindValue('passwort', $pw_hash);
+			$smt->execute();
+
+			if($result){
+				echo "Registrierung erfolgreich! <a href='login.php'>Zum Login</a>";
+				$Showform = false;
+			} else {
+				echo "Es ist ein Fehler aufgetreten!";
+			}
+		}
+
+	}
+}
+
+
+
+if($Showform){
+?>
+<h1>Registrierung</h1><br>
+<form action="?register=1" method="post">
+E-Mail:
+<input type="email" size=40 maxlength="250" name="email"><br>
+
+Passwort:
+<input type="password" size="40" maxlength="250"name="passwort"><br>
+
+Passwort widerholen:
+<input type="password" size="40" maxlength="250"name="passwort2"><br>
+
+<input type="submit" name="Registrieren">
+	
+</form>
+<?php
+}
+?>
 </body>
 <footer>
 	Author: Justin Preuß
