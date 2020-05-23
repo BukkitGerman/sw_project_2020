@@ -118,7 +118,6 @@
 		}
 
 	}else{
-		#echo 'Du hast keine Berechtigung für dieses Profil!';
 		
 		$rs = $db->prepare("SELECT vorname, nachname FROM users WHERE id = :id");
 		$rs->bindValue(":id", $_GET['user']);
@@ -127,13 +126,11 @@
 
 		
 
-		#$anzahl_posts = 
+		
 		echo "<h2>".$db_result['vorname']." ".$db_result['nachname']."</h2><br>
 			  <p>Der Nutzer hat ". beitrags_anzahl($db) ." erstellt.";
 
-		# Ausgabe
-		# Vorname und Nachname
-		# Anzahl der erstellten beiträge.
+		
 
 		}
 
