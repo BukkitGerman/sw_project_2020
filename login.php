@@ -6,7 +6,10 @@ if(isset($_GET['login'])){
 	$email = $_POST['email'];
 	$passwort = $_POST['passwort'];
 
-	$stmt = $db->query("SELECT * FROM users WHERE email = '$email'");
+
+	$stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
+	$stmt->bindValue(':email', $email);
+	$stmt = $stmt->execute();
 	$user = $stmt->fetchArray();
 	$userpw = $user["passwort"];
 
