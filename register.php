@@ -10,11 +10,22 @@ $db = new SQLite3("data.db");
 	<title>Blog - Registrierung</title>
 </head>
 <nav class="menu">
+	<h1>Blog</h1>
 	<ol>
 		<li class="crumb"><a href="/">Home</a></li>
 		<li class="crumb"><a href="posts.php">Posts</a></li>
-		<li class="crumb"><a href="profile.php">Profile</a></li>
-		<li class="crumb active" id="login"><a href="login.php">Login</a></li>
+		<?php 
+        	if(isset($_SESSION['userid'])){
+        		echo '<li class="crumb active"><a href="profile.php?user='.$_SESSION["userid"].'">Profile</a></li>';
+        	}
+        ?>
+		<?php
+        if(!isset($_SESSION['userid'])){
+        echo '<li class="crumb" id="login"><a href="login.php">Login</a></li>';
+    	}else{
+    	echo '<li class="crumb" id="logout"><a href="logout.php">Logout</a></li>';
+    	}
+        ?>
 	</ol>
 </nav>
 <body>
@@ -46,8 +57,6 @@ if(isset($_GET['register'])){
 		if(!$e){
 			$result = $db->query("SELECT * FROM users WHERE email = '$email'");
 			$user = $result->fetchArray();
-
-			var_dump($user);
 
 			if($user != false){
 				echo "E-Mail Adresse ist vergeben!";
