@@ -7,26 +7,27 @@ $db = new SQLite3("data.db");
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="css/style.css">
 	<title>Blog - Registrierung</title>
 </head>
 <nav class="menu">
-	<h1>Blog</h1>
-	<ol>
-		<li class="crumb"><a href="/">Home</a></li>
-		<li class="crumb"><a href="posts.php">Posts</a></li>
-		<?php 
+	<ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="posts.php">Posts</a></li>
+        <?php 
         	if(isset($_SESSION['userid'])){
-        		echo '<li class="crumb active"><a href="profile.php?user='.$_SESSION["userid"].'">Profile</a></li>';
+        		echo '<li><a href="profile.php?user='.$_SESSION["userid"].'">Profile</a></li>';
         	}
         ?>
-		<?php
+        <?php
         if(!isset($_SESSION['userid'])){
-        echo '<li class="crumb" id="login"><a href="login.php">Login</a></li>';
+        echo '<li class="active" id="login"><a href="login.php">Login</a></li>';
     	}else{
-    	echo '<li class="crumb" id="logout"><a href="logout.php">Logout</a></li>';
+    	echo '<li class="active" id="logout"><a href="logout.php">Logout</a></li>';
     	}
         ?>
-	</ol>
+        <li><a href="impressum.php">Impressum</a></li>
+    </ul>
 </nav>
 <body>
 <?php
@@ -108,6 +109,5 @@ Passwort widerholen:
 <footer>
 	Author: Justin Preuß
 	Copyright © 2020 Justin Preuß
-	<a href="impressum.php">Impressum</a>
 </footer>
 </html>

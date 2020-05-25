@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="css/style.css">
 	<title>Blog - Impressum</title>
 </head>
 <nav class="menu">
-	<ol>
-        <li class="crumb"><a href="/">Home</a></li>
-		<li class="crumb"><a href="posts.php">Posts</a></li>
-		<?php 
+	<ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="posts.php">Posts</a></li>
+        <?php 
         	if(isset($_SESSION['userid'])){
-        		echo '<li class="crumb active"><a href="profile.php?user='.$_SESSION["userid"].'">Profile</a></li>';
+        		echo '<li><a href="profile.php?user='.$_SESSION["userid"].'">Profile</a></li>';
         	}
         ?>
-		<?php
+        <?php
         if(!isset($_SESSION['userid'])){
-        echo '<li class="crumb" id="login"><a href="login.php">Login</a></li>';
+        echo '<li id="login"><a href="login.php">Login</a></li>';
     	}else{
-    	echo '<li class="crumb" id="logout"><a href="logout.php">Logout</a></li>';
+    	echo '<li id="logout"><a href="logout.php">Logout</a></li>';
     	}
         ?>
-	</ol>
+        <li class="active"><a href="impressum.php">Impressum</a></li>
+    </ul>
 </nav>
 <body>
 	<div class="middle box">
