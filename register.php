@@ -21,15 +21,16 @@ $db = new SQLite3("data.db");
         ?>
         <?php
         if(!isset($_SESSION['userid'])){
-        echo '<li class="active" id="login"><a href="login.php">Login</a></li>';
+        echo '<li style="float:right" class="active" id="login"><a href="login.php">Login</a></li>';
     	}else{
-    	echo '<li class="active" id="logout"><a href="logout.php">Logout</a></li>';
+    	echo '<li style="float:right" class="active" id="logout"><a href="logout.php">Logout</a></li>';
     	}
         ?>
         <li><a href="impressum.php">Impressum</a></li>
     </ul>
 </nav>
 <body>
+
 <?php
 
 $Showform = true;
@@ -88,23 +89,27 @@ if(isset($_GET['register'])){
 
 if($Showform){
 ?>
+<div class="con">
+ <div class="item" id="login">
 <h1>Registrierung</h1><br>
 <form action="?register=1" method="post">
-E-Mail:
-<input type="email" size=40 maxlength="250" name="email"><br>
+E-Mail:<br>
+<input type="email" size=40 maxlength="250" name="email" required placeholder="example@example.de"><br>
 
-Passwort:
-<input type="password" size="40" maxlength="250"name="passwort"><br>
+Passwort:<br>
+<input type="password" size="40" maxlength="250"name="passwort" required><br>
 
-Passwort widerholen:
-<input type="password" size="40" maxlength="250"name="passwort2"><br>
-
-<input type="submit" name="Registrieren">
+Passwort widerholen:<br>
+<input type="password" size="40" maxlength="250"name="passwort2" required><br>
+<br>
+<input type="submit" name="Registrieren" value="Registrieren">
 	
 </form>
 <?php
 }
 ?>
+</div>
+</div>
 </body>
 <footer>
 	Author: Justin Preuß

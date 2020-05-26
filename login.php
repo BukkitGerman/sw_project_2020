@@ -46,38 +46,40 @@ if(isset($_GET['login'])){
         ?>
         <?php
         if(!isset($_SESSION['userid'])){
-        echo '<li class="active" id="login"><a href="login.php">Login</a></li>';
+        echo '<li style="float:right" class="active" id="login"><a href="login.php">Login</a></li>';
     	}else{
-    	echo '<li id="logout"><a href="logout.php">Logout</a></li>';
+    	echo '<li style="float:right" id="logout"><a href="logout.php">Logout</a></li>';
     	}
         ?>
         <li><a href="impressum.php">Impressum</a></li>
     </ul>
 </nav>
 <body>
+<div class="con">
+ <div class="item" id="login">
  <h1>Login</h1><br>
 <form action="?login=1" method="post">
-E-Mail:
-<input type="email" size="40" maxlength="250" name="email"><br><br>
+E-Mail:<br>
+<input class="login" type="email" size="40" maxlength="250" name="email" required><br><br>
  
-Dein Passwort:
-<input type="password" size="40"  maxlength="250" name="passwort"><br>
- 
-<input type="submit" value="Login">
+Dein Passwort:<br>
+<input class="login" type="password" size="40"  maxlength="250" name="passwort" required><br>
+ <br>
+<input class="login" type="submit" value="Login">
 </form> 
+<hr/>
+<div>
+<p>Wenn du noch kein Account hast dann kannst du dich <a href="register.php">Hier Registrieren.</a></p>
+</div></div>
 <?php 
 if(isset($errorMessage)) {
     echo $errorMessage;
 }
 ?>
+</div>
 </body>
 <footer>
-	<div>
-		Author: Justin Preuß
-		Copyright © 2020 Justin Preuß
-	</div>
-	<div>
-		<a href="register.php">Register</a>
-	</div>
+	Author: Justin Preuß<br>
+	Copyright © 2020 Justin Preuß<br>
 </footer>
 </html>

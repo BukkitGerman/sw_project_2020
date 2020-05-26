@@ -1,4 +1,5 @@
 body{
+	background-color: #E8E8E8;
 	padding: 0px;
 	margin: 0px;
 }
@@ -24,11 +25,60 @@ li a {
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
   background-color: #111;
 }
 
 .active {
   background-color: #4CAF50;
+}
+
+.con{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.item{
+	padding: 20px;
+	margin-top: 40px;
+	background-color: #808080;
+	color: white;
+	height: 60%;
+	border-radius: 6px;
+}
+.item label{
+	display: block;
+    text-align: center;
+}
+
+.item:hover {
+	background-color: #606060;
+}
+
+#login.item{
+	width: 20%;
+}
+
+input, select, textarea{
+	width: 100%;
+	border-radius: 4px;
+}
+
+input[type=submit]{
+	background-color: #4CAF50; 
+	border-style: none;
+}
+
+
+
+
+footer {
+  height: 50px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
 }

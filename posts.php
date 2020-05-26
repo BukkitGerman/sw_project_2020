@@ -19,9 +19,9 @@ $db = new SQLite3("data.db");
         ?>
         <?php
         if(!isset($_SESSION['userid'])){
-        echo '<li id="login"><a href="login.php">Login</a></li>';
+        echo '<li style="float:right" id="login"><a href="login.php">Login</a></li>';
     	}else{
-    	echo '<li id="logout"><a href="logout.php">Logout</a></li>';
+    	echo '<li style="float:right" id="logout"><a href="logout.php">Logout</a></li>';
     	}
         ?>
         <li><a href="impressum.php">Impressum</a></li>

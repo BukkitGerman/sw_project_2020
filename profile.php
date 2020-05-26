@@ -61,22 +61,23 @@
         ?>
         <?php
         if(!isset($_SESSION['userid'])){
-        echo '<li id="login"><a href="login.php">Login</a></li>';
+        echo '<li style="float:right" id="login"><a href="login.php">Login</a></li>';
     	}else{
-    	echo '<li id="logout"><a href="logout.php">Logout</a></li>';
+    	echo '<li style="float:right" id="logout"><a href="logout.php">Logout</a></li>';
     	}
         ?>
         <li><a href="impressum.php">Impressum</a></li>
     </ul>
 </nav>
 <body>
+	<div class="con">
 	<?php
 	if($showdata == true){
 		$stmt = $db->query("SELECT * FROM users WHERE id = '".$_SESSION['userid']."'");
 		$user = $stmt->fetchArray();
 		$name = $user["vorname"];
 		$nachname = $user["nachname"];
-		echo '<br><h2>Profil Informationen</h3>';
+		echo '<div class="item"><h2>Profil Informationen</h3>';
 		echo '<p>UserID: '.$_SESSION["userid"].'</p>';
 		echo 'Anzahl der beiträge: '. beitrags_anzahl($db)."<br>";
 		echo '<br><h2>Persönliche Informationen</h2>';
@@ -85,21 +86,20 @@
 				<label>Nachname: <input type='text' name='nachname' value='".$nachname."'></label><br>
 				<input type='hidden' name='set' value='set'>
 				<input type='submit' name='aendern' value='&Auml;ndern'>
-			  </form><br>";
+			  </form><br></div>";
 		if($permission >= 1){
-			echo "<br><h2>Beitrag erstellen</h2>
+			echo "<div class='item'><h2>Beitrag erstellen</h2>
 				  <form method='POST'>
 					<div>  
-      					<label for='text'>Neuer Beitrag</label><br>
-      					<label>Überschrift: <input type='text' id='head' name='head'></label><br>
-					    <label>Beitrag: <textarea id='text' name='text' cols='35' rows='4'></textarea></label><br>	
+      					<label>Überschrift: <input type='text' id='head' name='head' required></label><br>
+					    <label>Beitrag: <textarea id='text' name='text' cols='35' rows='4' required></textarea></label><br>	
 					    <input type='submit' value='Erstellen'/>
 					</div> 
-				  </form>";
+				  </form></div>";
 		}
 		if($permission >=2){
 			$rs = $db->query("SELECT id, vorname, nachname, berechtigung FROM users");
-			echo "<br><h2>Nutzer Verwaltung</h2>
+			echo "<div class='item'><h2>Nutzer Verwaltung</h2>
 				  <form method='POST'>
 					<div>  
       					<label for='text'>Nutzer Berechtigungs Level Setzen</label><br>
@@ -112,10 +112,10 @@
       										echo "
       									</select>
       					</label><br>
-      					<label>Neues Level: <input type='number' name='level' min='0' max='2'></label>	
+      					<label>Neues Level: <input type='number' name='level' min='0' max='2' required></label><br>	
 					    <input type='submit' value='&Auml;ndern'/>
 					</div> 
-				  </form>";
+				  </form></div>";
 		}
 
 	}else{
@@ -154,14 +154,11 @@
 			return $db_anzahl;
 		}
 	?>
-	
-	<!--
-		Wenn Profile id und der Eingelogte nutzer übereinstimmen, Felder zum ändern der Daten hinzufügen!
-	-->
+</div>
 </body>
 <footer>
-	Author: Justin Preuß
-	Copyright © 2020 Justin Preuß
+	Author: Justin Preuß<br>
+	Copyright © 2020 Justin Preuß<br>
 </footer>
 </html>
 
