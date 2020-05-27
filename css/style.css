@@ -38,6 +38,7 @@ li a:hover {
 	flex-direction: row;
 	justify-content: space-around;
 }
+
 .item{
 	padding: 20px;
 	margin-top: 40px;
@@ -82,6 +83,17 @@ input, select, textarea{
 input[type=submit]{
 	background-color: #4CAF50; 
 	border-style: none;
+}
+
+
+h1 a,p a { 
+color: white;
+text-decoration: none;
+}
+
+h1 a:hover, p a:hover {
+color: #4CAF50;
+text-decoration: none;
 }
 
 

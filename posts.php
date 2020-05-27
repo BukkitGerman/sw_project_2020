@@ -31,7 +31,8 @@ $db = new SQLite3("data.db");
 <div>
 	<div class="Posts">
 		<?php
-			$rs = $db->query("SELECT * FROM posts");
+		if(!isset($_GET['post'])){
+			$rs = $db->query("SELECT * FROM posts ORDER BY id DESC");
 			while($dbsatz = $rs->fetchArray()){
 				$head = $dbsatz['head'];
 				$po = $dbsatz['post'];
@@ -39,16 +40,48 @@ $db = new SQLite3("data.db");
 				$rs_author_data = $rs_author->fetchArray();
 				$author = $rs_author_data['vorname'] . " " . $rs_author_data['nachname'];
 				$date = $dbsatz['created_at'];
+				if(strlen($po) > 1500){
+					$ending = "...";
+				}else{
+					$ending = "";
+				}
 				echo "
 				<div class='con-box'>
 					<div class='item-box'>
 					<div class='post' id='id_".$dbsatz['id']."'>
-					  	<h1>".filter_var($head, FILTER_SANITIZE_SPECIAL_CHARS)."</h1>
-					  	<p>".filter_var($po, FILTER_SANITIZE_SPECIAL_CHARS)."</p><br>
-					  	<p>Author: ".filter_var($author, FILTER_SANITIZE_SPECIAL_CHARS).", ".$date."</p>
+					  	<h1><a href='posts.php?post=".$dbsatz['id']."'>".filter_var($head, FILTER_SANITIZE_SPECIAL_CHARS)."</a></h1>
+					  	<p>".substr(filter_var($po, FILTER_SANITIZE_SPECIAL_CHARS), 0, 1500)."".$ending."</p><br>
+					  	<p>Author: <a href='profile.php?user=".$dbsatz['author']."'>".filter_var($author, FILTER_SANITIZE_SPECIAL_CHARS)."</a>, ".$date."</p>
 					</div><br>
 					</div>
 				</div>";
+			}
+			}else if(isset($_GET['post'])){
+				$rs = $db->prepare("SELECT * FROM posts WHERE id = :id");
+				$rs->bindValue(":id", $_GET['post']);
+				$db_result = $rs->execute();
+				$db_result = $db_result->fetchArray();
+
+
+				$head = $db_result['head'];
+				$po = $db_result['post'];
+				$rs_author = $db->query("SELECT vorname, nachname FROM users WHERE id = ".$db_result['author']);
+				$rs_author_data = $rs_author->fetchArray();
+				$author = $rs_author_data['vorname'] . " " . $rs_author_data['nachname'];
+				$date = $db_result['created_at'];
+
+				echo "
+				<div class='con-box'>
+					<div class='item-box'>
+						<h1>".filter_var($head, FILTER_SANITIZE_SPECIAL_CHARS)."</h1>
+					  	<p>".filter_var($po, FILTER_SANITIZE_SPECIAL_CHARS)."</p><br>
+					  	<p>Author: <a href='profile.php?user=".$db_result['author']."'>".filter_var($author, FILTER_SANITIZE_SPECIAL_CHARS)."</a>, ".$date."</p>
+					</div>
+				</div>
+
+					";
+
+
 			}			
 		?>
 	</div>
