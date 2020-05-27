@@ -37,6 +37,7 @@ li a:hover {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	flex-wrap: wrap;
 }
 
 .item{
