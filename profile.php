@@ -21,16 +21,16 @@
 
 	if(isset($_POST['set']) && isset($_POST['name']) && isset($_POST['nachname'])){
 		$smt = $db->prepare("UPDATE users SET vorname = :name, nachname = :nachname WHERE id = ".$_SESSION['userid']);
-		$smt->bindValue(':name', $_POST['name']);
-		$smt->bindValue(':nachname', $_POST['nachname']);
+		$smt->bindValue(':name', filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS));
+		$smt->bindValue(':nachname', filter_var($_POST['nachname'], FILTER_SANITIZE_SPECIAL_CHARS));
 		$smt->execute();
 	}
 
 	if(isset($_POST['text']) && $permission >=1){
 		$smt = $db->prepare("INSERT INTO posts (author, head, post) VALUES (:author, :head, :post)");
 		$smt->bindValue(':author', $_SESSION['userid']);
-		$smt->bindValue(':head', $_POST['head']);
-		$smt->bindValue(':post', $_POST['text']);
+		$smt->bindValue(':head', filter_var($_POST['head'], FILTER_SANITIZE_SPECIAL_CHARS));
+		$smt->bindValue(':post', filter_var($_POST['text'], FILTER_SANITIZE_SPECIAL_CHARS));
 		$smt->execute();
 
 		alert("Beitrag Erfolgreich erstellt!");

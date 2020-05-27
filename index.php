@@ -42,9 +42,9 @@
 				$author = $rs_author_data['vorname'] . " " . $rs_author_data['nachname'];
 				$date = $dbsatz['created_at'];
 				echo "<div class='post' id='id_".$dbsatz['id']."'>
-					  	<h1>".$head."</h1>
-					  	<p>".$po."</p><br>
-					  	<p>Author: ".$author.", ".$date."</p>
+					  	<h1>".filter_var($head, FILTER_SANITIZE_SPECIAL_CHARS)."</h1>
+					  	<p>".filter_var($po, FILTER_SANITIZE_SPECIAL_CHARS)."</p><br>
+					  	<p>Author: ".filter_var($author, FILTER_SANITIZE_SPECIAL_CHARS).", ".$date."</p>
 					  </div><br>";
 			
 		?>
