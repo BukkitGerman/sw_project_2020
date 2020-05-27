@@ -39,11 +39,16 @@ $db = new SQLite3("data.db");
 				$rs_author_data = $rs_author->fetchArray();
 				$author = $rs_author_data['vorname'] . " " . $rs_author_data['nachname'];
 				$date = $dbsatz['created_at'];
-				echo "<div class='post' id='id_".$dbsatz['id']."'>
+				echo "
+				<div class='con-box'>
+					<div class='item-box'>
+					<div class='post' id='id_".$dbsatz['id']."'>
 					  	<h1>".filter_var($head, FILTER_SANITIZE_SPECIAL_CHARS)."</h1>
 					  	<p>".filter_var($po, FILTER_SANITIZE_SPECIAL_CHARS)."</p><br>
 					  	<p>Author: ".filter_var($author, FILTER_SANITIZE_SPECIAL_CHARS).", ".$date."</p>
-					  </div><br>";
+					</div><br>
+					</div>
+				</div>";
 			}			
 		?>
 	</div>

@@ -55,6 +55,21 @@ li a:hover {
 	background-color: #606060;
 }
 
+.con-box{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: left;
+}
+
+.item-box{
+	padding: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #606060;
+	color: white;
+}
+
 #login.item{
 	width: 20%;
 }
