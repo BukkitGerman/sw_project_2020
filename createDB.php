@@ -19,5 +19,10 @@
 		post text NOT NULL,
 		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");	
 
+if(isset($_GET['testuser'])){
+	if($_GET['testuser'] == true){
+		$db->exec("INSERT INTO users (email, passwort, berechtigung) VALUES ('test@123.de', test, 2)");
+	}
+}
 	
 ?>
