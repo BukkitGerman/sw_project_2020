@@ -21,7 +21,8 @@
 
 if(isset($_GET['testuser'])){
 	if($_GET['testuser'] == true){
-		$db->exec("INSERT INTO users (email, passwort, berechtigung) VALUES ('test@123.de', test, 2)");
+		$pw = password_hash('test', PASSWORD_DEFAULT);
+		$db->exec("INSERT INTO users (email, passwort, berechtigung) VALUES ('test@123.de', '".$pw."', 2)");
 	}
 }
 	

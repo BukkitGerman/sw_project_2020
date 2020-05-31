@@ -87,6 +87,7 @@
 				<input type='hidden' name='set' value='set'>
 				<input type='submit' name='aendern' value='&Auml;ndern'>
 			  </form><br></div>";
+
 		if($permission >= 1){
 			echo "<div class='item'><h2>Beitrag erstellen</h2>
 				  <form method='POST'>
