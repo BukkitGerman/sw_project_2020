@@ -2,9 +2,11 @@
 	session_start();
 	$db = new SQLite3("data.db");
 
+
 	function alert($msg) {
     	echo "<script type='text/javascript'>alert('$msg');</script>";
-	}
+	}	
+
 
 	if(isset($_SESSION['userid']) && isset($_GET['user'])){
 		if($_SESSION['userid'] == $_GET['user']){
@@ -37,10 +39,12 @@
 	}
 
 	if(isset($_POST['usid']) && $permission >=2){
-		$smt = $db->prepare("UPDATE users SET berechtigung = :berechtigung WHERE id = ".$_POST['usid']);
+		$smt = $db->prepare("UPDATE users SET berechtigung = :berechtigung WHERE id = :id");
 		$smt->bindValue(':berechtigung', $_POST['level']);
+		$smt->bindValue('id', $_POST['usid']);
 		$smt->execute();
 	}
+
 
 
 ?>
@@ -99,8 +103,15 @@
 				  </form></div>";
 		}
 		if($permission >=2){
+	
+			if(isset($_POST['usid_reset'])){
+				$recover = '<br><input type=text value='.$link.' id=copy readonly>';
+			}else{
+				$recover = "";
+			}
+
 			$rs = $db->query("SELECT id, vorname, nachname, berechtigung FROM users");
-			echo "<div class='item'><h2>Nutzer Verwaltung</h2>
+			echo "<div class='item'><h2>Nutzer Verwaltung</h2><div class='con2'>
 				  <form method='POST'>
 					<div>  
       					<label for='text'>Nutzer Berechtigungs Level Setzen</label><br>
@@ -116,7 +127,9 @@
       					<label>Neues Level: <input type='number' name='level' min='0' max='2' required></label><br>	
 					    <input type='submit' value='&Auml;ndern'/>
 					</div> 
-				  </form></div>";
+				  </form></div>
+
+				  </div>";
 		}
 
 	}else{

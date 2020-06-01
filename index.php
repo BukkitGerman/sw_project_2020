@@ -41,11 +41,16 @@
 				$rs_author_data = $rs_author->fetchArray();
 				$author = $rs_author_data['vorname'] . " " . $rs_author_data['nachname'];
 				$date = $dbsatz['created_at'];
-				echo "<div class='post' id='id_".$dbsatz['id']."'>
-					  	<h1>".filter_var($head, FILTER_SANITIZE_SPECIAL_CHARS)."</h1>
-					  	<p>".filter_var($po, FILTER_SANITIZE_SPECIAL_CHARS)."</p><br>
-					  	<p>Author: ".filter_var($author, FILTER_SANITIZE_SPECIAL_CHARS).", ".$date."</p>
-					  </div><br>";
+				echo "
+				<div class='con-box'>
+					<div class='item-box'>
+					<div class='post' id='id_".$dbsatz['id']."'>
+					  	<h1><a href='posts.php?post=".$dbsatz['id']."'>".filter_var($head, FILTER_SANITIZE_SPECIAL_CHARS)."</a></h1>
+					  	<p>".substr(filter_var($po, FILTER_SANITIZE_SPECIAL_CHARS), 0, 1500)."".$ending."</p><br>
+					  	<p>Author: <a href='profile.php?user=".$dbsatz['author']."'>".filter_var($author, FILTER_SANITIZE_SPECIAL_CHARS)."</a>, ".$date."</p>
+					</div><br>
+					</div>
+				</div>";
 			
 		?>
 	</div>

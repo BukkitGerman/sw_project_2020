@@ -19,6 +19,7 @@
 		post text NOT NULL,
 		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)");	
 
+
 if(isset($_GET['testuser'])){
 	if($_GET['testuser'] == true){
 		$pw = password_hash('test', PASSWORD_DEFAULT);

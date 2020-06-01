@@ -40,6 +40,13 @@ li a:hover {
 	flex-wrap: wrap;
 }
 
+.con2{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
 .item{
 	padding: 20px;
 	margin-top: 40px;
@@ -48,6 +55,19 @@ li a:hover {
 	height: 60%;
 	border-radius: 6px;
 }
+
+
+.item2{
+	padding: 20px;
+	margin-top: 40px;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: #808080;
+	color: white;
+	height: 60%;
+	border-radius: 6px;
+}
+
 .item label{
 	display: block;
     text-align: center;
