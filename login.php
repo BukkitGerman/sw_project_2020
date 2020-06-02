@@ -70,12 +70,13 @@ Dein Passwort:<br>
 <hr/>
 <div>
 <p>Wenn du noch kein Account hast dann kannst du dich <a href="register.php">Hier Registrieren.</a></p>
-</div></div>
+<br>
 <?php 
 if(isset($errorMessage)) {
     echo $errorMessage;
 }
 ?>
+</div></div>
 </div>
 </body>
 <footer>

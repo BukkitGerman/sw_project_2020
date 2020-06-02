@@ -27,10 +27,12 @@
     </ul>
 </nav>
 <body>
-	<div class="middle box">
-		<p>Justin Preuß<br>
-		Beispiel Adresse 32<br>
-		Tel. 3820137529</p>
+	<div class="con">
+        <div class="item">
+		      <p>Justin Preuß<br>
+		      Beispiel Adresse 32<br>
+		      Tel. 3820137529</p>
+        </div>
 	</div>
 </body>
 <footer>
