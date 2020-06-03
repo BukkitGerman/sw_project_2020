@@ -36,7 +36,10 @@ $db = new SQLite3("data.db");
 			while($dbsatz = $rs->fetchArray()){
 				$head = $dbsatz['head'];
 				$po = $dbsatz['post'];
-				$rs_author = $db->query("SELECT vorname, nachname FROM users WHERE id = ".$dbsatz['author']);
+
+				$rs_author = $db->prepare("SELECT vorname, nachname FROM users WHERE id = :author");
+				$rs_author->bindValue(":author", $dbsatz['author']);
+				$rs_author = $rs_author->execute();
 				$rs_author_data = $rs_author->fetchArray();
 				$author = $rs_author_data['vorname'] . " " . $rs_author_data['nachname'];
 				$date = $dbsatz['created_at'];

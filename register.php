@@ -57,7 +57,9 @@ if(isset($_GET['register'])){
 
 
 		if(!$e){
-			$result = $db->query("SELECT * FROM users WHERE email = '$email'");
+			$result = $db->prepare("SELECT * FROM users WHERE email = :email");
+			$result->bindValue(":email", $email);
+			$result = $result->execute();
 			$user = $result->fetchArray();
 
 			if($user != false){
