@@ -38,7 +38,7 @@
 		alert("Beitrag Erfolgreich erstellt!");
 	}
 
-	if(isset($_POST['usid']) && $permission >=2){
+	if(isset($_POST['usid']) && isset($_POST['level']) && $permission >=2){
 		$smt = $db->prepare("UPDATE users SET berechtigung = :berechtigung WHERE id = :id");
 		$smt->bindValue(':berechtigung', $_POST['level']);
 		$smt->bindValue('id', $_POST['usid']);
